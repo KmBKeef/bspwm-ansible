@@ -1,0 +1,28 @@
+---
+
+- name: Installing dependencies
+  dnf: name={{item}}
+  with_items:
+    - rxvt-unicode
+    - dmenu
+    - xcb-util-devel
+    - xcb-util-keysyms-devel
+    - xcb-util-wm-devel
+    - alsa-lib-devel
+    
+- name: Enabiling copr repos
+  raw: "dnf copr enable outman/bspwm -y"
+
+- name: Enabiling other repos
+  raw: "dnf copr enable notkild/polybar -y"
+
+- name: Installing weak dependencies
+  dnf: name={{item}}
+  with_items:
+    - sxhkd
+    - polybar
+    - compton
+    - xdotool
+
+- name: Installing bspwm
+  dnf: name=bspwm

@@ -1,0 +1,27 @@
+---
+#- name: Adding Hack font copr
+#  shell: dnf copr enable  heliocastro/hack-fonts -y
+
+- name: Installing my stuff
+  dnf: name={{item}}
+  with_items:
+  #  - tmux
+  #  - hack-fonts
+  #  - nautilus
+  #  - mpv
+  #  - jq
+   - stow
+
+
+- name: gitting dotfiles
+  git:
+    repo: https://github.com/KmBKeef/dotfiles.git
+    dest: /home/{{username}}/dotfiles
+    accept_hostkey: yes
+
+- name: Symlink dotfiles
+  shell: cd /home/{{username}}/dotfiles && stow {{ item }}
+  with_items:
+    - bash
+    - config
+    - tmux

@@ -1,0 +1,19 @@
+---
+
+- name: Updating the system
+  dnf:  name="*" state=latest
+
+- name: Installing stuff
+  dnf: name={{item}}
+  with_items:
+    - iw
+    - "@base-x"
+    - "@core"
+    - "@Development\ Tools"
+    - "@C\ Development\ Tools\ And\ Libraries"
+    - "@firefox"
+    - freetype-freeworld
+    - "@multimedia"
+    - vi
+    - vim
+    - neovim
